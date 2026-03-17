@@ -1,5 +1,5 @@
 ---
-description: Language conventions — code in English, communicate in Chinese
+description: Language conventions — code & UI in English, communicate in Chinese
 alwaysApply: true
 ---
 
@@ -15,6 +15,16 @@ All code-related content must be written in English, including:
 - Documentation files (README, etc.)
 - Error messages and log strings
 - API endpoints and response fields
+
+## Product UI Language: English
+
+All user-facing content in the product must be in English, including:
+
+- Button labels, menu items, and navigation text
+- Form labels, placeholders, and validation messages
+- Tooltips, toasts, and notification messages
+- Page titles, headings, and descriptions
+- Empty states and onboarding text
 
 ## Communication Language: Chinese
 

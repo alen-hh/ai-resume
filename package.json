@@ -1,6 +1,6 @@
 {
   "name": "ai-resume",
-  "displayName": "Ai resume",
+  "displayName": "AI RESUME",
   "version": "0.0.1",
   "description": "AI resume.",
   "author": "Alen Hu <huhaoyue0220@126.com>",
@@ -11,10 +11,15 @@
   },
   "dependencies": {
     "@radix-ui/react-label": "2.1.2",
+    "@radix-ui/react-scroll-area": "^1.2.10",
+    "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "1.1.2",
+    "@radix-ui/react-tooltip": "^1.2.8",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "lucide-react": "0.474.0",
+    "mammoth": "^1.12.0",
+    "marked": "^17.0.4",
     "plasmo": "0.90.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -38,6 +43,13 @@
   "manifest": {
     "host_permissions": [
       "https://*/*"
+    ],
+    "permissions": [
+      "sidePanel",
+      "activeTab",
+      "tabs",
+      "scripting",
+      "storage"
     ]
   }
 }

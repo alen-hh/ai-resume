@@ -1,0 +1,18 @@
+---
+description: Keep README in sync with code changes
+alwaysApply: true
+---
+
+# Sync README After Code Changes
+
+After completing code changes, review `README.md` and update it if any of the following have changed:
+
+- Project setup or installation steps
+- Available scripts or commands
+- Configuration options or environment variables
+- Project structure or architecture
+- Features or functionality
+- API endpoints or usage examples
+- Dependencies (added, removed, or updated)
+
+Only update sections that are actually affected by the code change. Do not rewrite unrelated parts of the README.
