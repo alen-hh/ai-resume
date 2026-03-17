@@ -1,6 +1,6 @@
 import "~globals.css"
 
-import { FileText, Loader2, Settings, Sparkles } from "lucide-react"
+import { AlertCircle, FileText, Loader2, Settings, Sparkles } from "lucide-react"
 import { useCallback, useEffect, useRef, useState } from "react"
 
 import { JobInfo } from "~components/job-info"
@@ -11,6 +11,7 @@ import { Button } from "~components/ui/button"
 import { Separator } from "~components/ui/separator"
 import { streamChatCompletion } from "~lib/openrouter"
 import { type JobPlatform, JOB_PLATFORMS, matchPlatform } from "~lib/platforms"
+import { getApiKey } from "~lib/storage"
 import { buildUserMessage, SYSTEM_PROMPT } from "~lib/resume-prompt"
 
 interface TabInfo {
@@ -103,10 +104,18 @@ const SidePanel = () => {
   const [generatedResume, setGeneratedResume] = useState("")
   const [isStreaming, setIsStreaming] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [hasApiKey, setHasApiKey] = useState(true)
   const abortRef = useRef<AbortController | null>(null)
 
+  useEffect(() => {
+    getApiKey().then((k) => setHasApiKey(!!k))
+    const onChange = () => getApiKey().then((k) => setHasApiKey(!!k))
+    chrome.storage.onChanged.addListener(onChange)
+    return () => chrome.storage.onChanged.removeListener(onChange)
+  }, [])
+
   const canGenerate =
-    !!jobData?.jobDesc && !!curResume && !isStreaming && !jobLoading
+    !!jobData?.jobDesc && !!curResume && !isStreaming && !jobLoading && hasApiKey
 
   const handleGenerate = async () => {
     if (!canGenerate || !jobData) return
@@ -169,6 +178,22 @@ const SidePanel = () => {
           </p>
         </div>
 
+        {!hasApiKey && (
+          <div className="flex items-center gap-2 rounded-md border border-amber-500/50 bg-amber-500/10 p-3">
+            <AlertCircle className="h-4 w-4 shrink-0 text-amber-500" />
+            <p className="flex-1 text-xs text-amber-700">
+              Set your OpenRouter API Key to enable AI generation.
+            </p>
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-7 shrink-0 text-xs"
+              onClick={() => chrome.runtime.openOptionsPage()}>
+              <Settings className="mr-1.5 h-3 w-3" />
+              Settings
+            </Button>
+          </div>
+        )}
         {/* Job Description Section */}
         {jobLoading ? (
           <div className="flex items-center gap-2 rounded-md border p-4">
