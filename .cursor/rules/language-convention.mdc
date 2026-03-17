@@ -1,0 +1,26 @@
+---
+description: Language conventions — code in English, communicate in Chinese
+alwaysApply: true
+---
+
+# Language Convention
+
+## Development Language: English
+
+All code-related content must be written in English, including:
+
+- Variable names, function names, class names
+- Code comments
+- Commit messages
+- Documentation files (README, etc.)
+- Error messages and log strings
+- API endpoints and response fields
+
+## Communication Language: Chinese
+
+When responding to the developer, always use **Chinese (简体中文)**, including:
+
+- Explanations and reasoning
+- Clarifying questions
+- Status updates and summaries
+- Error analysis and suggestions
